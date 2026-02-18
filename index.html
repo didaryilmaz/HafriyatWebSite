@@ -180,43 +180,51 @@
 
 
 
-/* MOBİLDE HEADER TELEFON / WHATSAPP ALT ALTA */
+/* ============================= */
+/* MOBİLDE TELEFON & WHATSAPP ZORLA ALT ALTA */
+/* ============================= */
 @media (max-width: 991px) {
 
-  .top-info-box.contact-list {
+  /* UL'yi flex'ten çıkar */
+  .header-right .top-info-box.contact-list {
     display: block !important;
   }
 
-  .top-info-box.contact-list > li.contact-item {
+  /* Her bir Telefon / WhatsApp bloğu */
+  .header-right .contact-item {
     display: block !important;
     width: 100% !important;
-    margin-bottom: 18px;
+    clear: both !important;
+    margin-bottom: 20px;
   }
 
-  .contact-title {
-    display: flex;
+  /* Başlık satırı */
+  .header-right .contact-title {
+    display: flex !important;
     align-items: center;
     gap: 8px;
     margin-bottom: 6px;
   }
 
-  .contact-numbers {
-    margin: 0;
+  /* Numara listesi */
+  .header-right .contact-numbers {
+    display: block !important;
     padding-left: 32px;
   }
 
-  .contact-numbers li {
-    display: block;
+  .header-right .contact-numbers li {
+    display: block !important;
+    width: 100%;
     margin-bottom: 6px;
   }
 
-  .contact-numbers li a {
+  .header-right .contact-numbers a {
     display: block;
-    font-size: 15px;
-    line-height: 1.4;
     white-space: nowrap;
+    font-size: 15px;
   }
 }
+
 
 </style>
 
