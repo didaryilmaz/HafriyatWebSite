@@ -55,66 +55,164 @@
 
 	  ga('create', 'UA-54503473-1', 'auto');
 	  ga('send', 'pageview');
-</script>		<style>
-  .whatsapp, .telefon {
-      position: fixed;
-      right: 20px; /* Sayfanın sağ kenarına sabitler */
-      z-index: 1000; /* Diğer içeriklerin üstünde kalmasını sağlar */
-  }
+</script>		
 
-  .telefon {
-      bottom: 82px; /* WhatsApp butonu sayfanın altında olacak */
-  }
+<style>
+  
+  /* =========================
+   SABİT TELEFON & WHATSAPP
+   ========================= */
 
-  .whatsapp {
-      bottom: 18px; /* Telefon butonu WhatsApp'ın altında olacak */
-  }
+.telefon,
+.whatsapp {
+    position: fixed;
+    right: 20px;
+    z-index: 1000;
+}
 
-  .whatsapp img, .telefon img {
-      width: 55px; /* Görsel boyutlarını ayarla */
-      height: auto;
-      cursor: pointer;
-      background: transparent; /* Arka planı şeffaf yap */
-      border-radius: 50%; /* Yuvarlak kenarlar */
-      box-shadow: none; /* Gölgeleri kaldır */
-  }
+.telefon {
+    bottom: 82px;
+}
 
-  .tooltiptext {
-      visibility: hidden;
-      width: 100px;
-      background-color: black;
-      color: #fff;
-      text-align: center;
-      border-radius: 5px;
-      padding: 5px;
-      position: absolute;
-      right: 60px;
-      bottom: 10px;
-      opacity: 0;
-      transition: opacity 0.3s;
-  }
+.whatsapp {
+    bottom: 18px;
+}
 
-  .whatsapp:hover .tooltiptext,
-  .telefon:hover .tooltiptext {
-      visibility: visible;
-      opacity: 1;
-  }
+/* =========================
+   BUTTON (IMG TIKLANABİLİR)
+   ========================= */
+
+.phone-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.phone-btn img {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: transparent;
+}
+
+/* =========================
+   TOOLTIP
+   ========================= */
+
+.tooltiptext {
+    position: absolute;
+    right: 70px;
+    bottom: 18px;
+    background: #000;
+    color: #fff;
+    padding: 6px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    white-space: nowrap;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+}
+
+.phone-box:hover .tooltiptext {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================
+   NUMARA SEÇİM MENÜSÜ
+   ========================= */
+
+.phone-menu {
+    position: absolute;
+    right: 70px;
+    bottom: 0;
+    width: 200px;
+    margin: 0;
+    padding: 6px 0;
+    list-style: none;
+
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+
+    /* Kapalı hali */
+    opacity: 0;
+    transform: translateX(20px);
+    pointer-events: none;
+
+    transition: all 0.3s ease;
+}
+
+/* Açık hali (JS ile eklenir) */
+.phone-box.active .phone-menu {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+}
+
+/* Menü linkleri */
+.phone-menu li a {
+    display: block;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: #000;
+    text-decoration: none;
+}
+
+.phone-menu li a:hover {
+    background-color: #f2f2f2;
+}
+
+/* =========================
+   MOBİL UYUM
+   ========================= */
+
+
+
+@media (max-width: 576px) {
+    .phone-menu {
+        width: 170px;
+        right: 65px;
+    }
+    .header-right {
+        padding-left: 0;
+        margin-top: 10px;
+    }
+}
+
+
+
 </style>
 
-<div class="telefon">
-<a href="tel:+905327921354" title="Telefon" class="nolink">
-  <img src="images/telefon_logo.png" alt="Telefon">
-</a>
-<span class="tooltiptext">Telefon</span>
+<!-- TELEFON BUTONU -->
+<div class="telefon phone-box">
+    <button class="phone-btn" type="button">
+        <img src="images/telefon_logo.png" alt="Telefon">
+    </button>
+    <span class="tooltiptext">Telefon</span>
+
+    <ul class="phone-menu">
+        <li><a href="tel:+905327921354">0 (532) 792 13 54</a></li>
+        <li><a href="tel:+905161609224">0 (516) 160 92 24</a></li>
+    </ul>
 </div>
 
+<!-- WHATSAPP BUTONU -->
+<div class="whatsapp phone-box">
+    <button class="phone-btn" type="button">
+        <img src="images/whatsap_icon2.png" alt="WhatsApp">
+    </button>
+    <span class="tooltiptext">WhatsApp</span>
 
-<div class="whatsapp">
-  <a href="https://wa.me/+905327921354" target="_blank" title="WhatsApp">
-    <img src="images/whatsap_icon2.png" alt="WhatsApp">
-  </a>
-  <span class="tooltiptext">WhatsApp</span>
-</div>	
+    <ul class="phone-menu">
+        <li><a href="https://wa.me/905327921354" target="_blank">0 (532) 792 13 54</a></li>
+        <li><a href="https://wa.me/905161609224" target="_blank">0 (516) 160 92 24</a></li>
+    </ul>
+</div>
+
 
 <script src="tema/genel/js/jquery.js"></script>
 <script src="tema/genel/js/sweetalert2.all.min.js"></script>
@@ -130,28 +228,53 @@
   <div class="bg-white">
     <div class="container">
       <div class="logo-area">
-          <div class="row align-items-center">
-            <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
-                <a class="d-block" href="index.html">
-                  <img loading="lazy" src="images/logo.png" alt="Öztürk Hafriyat">
-                </a>
-            </div><!-- logo end -->
-            <div class="col-lg-9 header-right">
-                <ul class="top-info-box">
-                    <li>
-                        <img src="images/telefon_logo.png" alt="Telefon İkonu" width="30" height="30">
-                        <a href="tel:+905327921354" title="Hemen ara teklif al"> 0(532) 792 1354  </a>
-                    </li>
-                    
-                    <li>
-                        <img src="images/whatsap_icon2.png" alt="WhatsApp İkonu" width="30" height="30">
-                        <a href="https://wa.me/+905327921354" title="WhatsApp'tan teklif al"> 0(532) 792 1354 </a>
-                    </li>
-                    
-                </ul><!-- Ul end -->
-            </div><!-- header right end -->
-          </div><!-- logo area end -->
-  
+        <div class="row align-items-center">
+
+          <!-- LOGO -->
+          <div class="logo col-lg-3 text-center text-lg-left mb-3 mb-md-5 mb-lg-0">
+            <a class="d-block" href="index.html">
+              <img loading="lazy" src="images/logo.png" alt="Öztürk Hafriyat">
+            </a>
+          </div>
+
+          <!-- TELEFON / WHATSAPP -->
+          <div class="col-lg-9 header-right pl-lg-4">
+            <ul class="top-info-box contact-list">
+
+              <!-- TELEFON -->
+              <li class="contact-item">
+                <div class="contact-title">
+                  <img src="images/telefon_logo.png" alt="Telefon" width="24">
+                  <span>Telefon:</span>
+                </div>
+                <ul class="contact-numbers">
+                  <li><a href="tel:+905327921354">0 (532) 792 13 54</a></li>
+                  <li><a href="tel:+905161609224">0 (516) 160 92 24</a></li>
+                </ul>
+              </li>
+
+              <!-- WHATSAPP -->
+              <li class="contact-item">
+                <div class="contact-title">
+                  <img src="images/whatsap_icon2.png" alt="WhatsApp" width="24">
+                  <span>WhatsApp:</span>
+                </div>
+                <ul class="contact-numbers">
+                  <li>
+                    <a href="https://wa.me/905327921354" target="_blank">
+                      0 (532) 792 13 54
+                    </a>
+                  </li>
+                  <li>
+                    <a href="https://wa.me/905161609224" target="_blank">
+                      0 (516) 160 92 24
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div><!-- logo area end -->
       </div><!-- Row end -->
     </div><!-- Container end -->
   </div>
@@ -161,14 +284,14 @@
         <div class="row">
           <div class="col-lg-12">
               <nav class="navbar navbar-expand-lg navbar-dark p-0">
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                
+                <div class="navbar" ></div>
                 <div id="navbar-collapse" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav mr-auto">
 					<li class="nav-item"><a class="nav-link" href="index.html">Anasayfa</a></li>
-					<li class="nav-item"><a class="nav-link" href="hakkimizda.html">Hakkımızda</a></li>
+					<li class="nav-item">
+            <a class="nav-link" href="#hakkimizda">Hakkımızda</a>
+          </li>
+
                     </ul>
                 </div>
               </nav>
@@ -198,7 +321,7 @@
     />
     <div class="container h-100" style="position: absolute; top: 85%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: white;">
         <h3 class="slide-title">"40 Yıllık Tecrübemizle"</h3>
-        <h3 class="slide-sub-title">Öztürk Hafriyat</h3>
+        <h3 class="slide-sub-title">Erzincan Öztürk Hafriyat</h3>
     </div>
 </div>
 
@@ -210,7 +333,7 @@
         <div class="row align-items-center">
           <div class="col-md-8 text-center text-md-left">
               <div class="call-to-action-text">
-                <h3 class="action-title">Öztürk Hafriyat  ; Kaliteli Hafriyat Hizmeti | Erzincan'da Kepçe ve Kamyon Hizmeti </h3>
+                <h3 class="action-title">Erzincan Öztürk Hafriyat  ; Kaliteli Hafriyat Hizmeti | Erzincan'da Kepçe ve Kamyon Hizmeti </h3>
               </div>
           </div><!-- Col end -->
         </div><!-- row end -->
@@ -223,12 +346,11 @@
     <div class="row">
         <div class="col-lg-6">
           <div class="ts-intro">
-              <h3 class="into-sub-title">Öztürk Hafriyat </h3>
-			   <p>Kaliteli Hafriyat Hizmeti | Erzincan'da Kepçe ve Kamyon Hizmeti - Öztürk Hafriyat  </p>
+              <h3 class="into-sub-title">Erzincan Öztürk Hafriyat </h3>
+			   <p>Kaliteli Hafriyat Hizmeti | Erzincan'da Kepçe ve Kamyon Hizmeti - Erzincan Öztürk Hafriyat  </p>
 			   <br>
               <p>
-                Öztürk Hafriyat olarak, 40 yılı aşkın tecrübemizle Erzincan’da hafriyat ve inşaat sektöründe güvenilir hizmet sunuyoruz. Müşteri memnuniyetini her zaman ön planda tutarak, projelerinizi hızlı, güvenli ve eksiksiz bir şekilde tamamlıyoruz.
-
+                Erzincan Öztürk Hafriyat olarak, 40 yılı aşkın tecrübemizle Erzincan’da hafriyat ve inşaat sektöründe güvenilir hizmet sunuyoruz. Müşteri memnuniyetini her zaman ön planda tutarak, projelerinizi hızlı, güvenli ve eksiksiz bir şekilde tamamlıyoruz.
                 Şehir içi temel hafriyat, inşaat kazıları, zemin hazırlıkları, yol açma ve altyapı çalışmalarında ekibimiz ve ekipmanlarımızla yanınızdayız. Kaliteli hizmet anlayışımızla tüm hafriyat işleriniz için doğru adrestesiniz!              </p>
           </div><!-- Intro box end -->
 
@@ -241,7 +363,7 @@
                       <i class="fas fa-trophy"></i>
                     </span>
                     <div class="ts-service-box-content">
-                      <h3 class="service-box-title">ŞEHİR İÇİ TEMEL HAFRİYATLARI</h3>
+                      <h3 class="service-box-title">ERZİNCAN ŞEHİR İÇİ TEMEL HAFRİYATLARI</h3>
                     </div>
                 </div><!-- Service 1 end -->
               </div><!-- col end -->
@@ -272,7 +394,7 @@
                 <div class="card-header p-0 bg-transparent" id="headingOne">
                     <h2 class="mb-0">
                       <button class="btn btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                          ŞEHİR İÇİ TEMEL HAFRİYATLAR
+                          ERZİNCANŞEHİR İÇİ TEMEL HAFRİYATLAR
                       </button>
                     </h2>
                 </div>
@@ -290,13 +412,13 @@
                 <div class="card-header p-0 bg-transparent" id="headingThree">
                     <h2 class="mb-0">
                       <button class="btn btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                          HAFRİYAT İŞLERİ
+                          ERZİNCAN HAFRİYAT İŞLERİ
                       </button>
                     </h2>
                 </div>
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#our-values-accordion">
                     <div class="card-body">
-                      Hafriyat işleri, inşaat projelerinde zemin hazırlığı amacıyla yapılan kazı, dolgu, taşıma ve tesviye işlemlerini kapsayan çalışmalardır. Bu işler, yapıların temel kazılarının yapılması, yolların ve altyapı sistemlerinin inşa edilmesi, arazilerin düzenlenmesi gibi çeşitli süreçleri içerir. Hafriyat, genellikle büyük miktarda toprak, kaya ve diğer malzemelerin kazılması ve taşınmasını gerektirir. Projenin başarısı için hafriyat işlerinin planlı, çevreye duyarlı ve güvenli bir şekilde yürütülmesi önemlidir.
+                      Erzincan Hafriyat işleri, inşaat projelerinde zemin hazırlığı amacıyla yapılan kazı, dolgu, taşıma ve tesviye işlemlerini kapsayan çalışmalardır. Bu işler, yapıların temel kazılarının yapılması, yolların ve altyapı sistemlerinin inşa edilmesi, arazilerin düzenlenmesi gibi çeşitli süreçleri içerir. Hafriyat, genellikle büyük miktarda toprak, kaya ve diğer malzemelerin kazılması ve taşınmasını gerektirir. Projenin başarısı için hafriyat işlerinin planlı, çevreye duyarlı ve güvenli bir şekilde yürütülmesi önemlidir.
                     </div>
                 </div>
               </div>
@@ -380,7 +502,6 @@ $(document).ready(function() {
 
 
         <div class="row shuffle-wrapper">
-          <div class="col-1 shuffle-sizer"></div>
           <style>
             .project-img-container img {
                 width: 200%;
@@ -403,7 +524,23 @@ $(document).ready(function() {
               <div class="project-item-info">
                 <div class="project-item-info-content">
                   <h3 class="project-item-title">
-                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 21.07.56.jpeg" aria-label="project-img">Öztürk Hafriyat</a>
+                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 21.07.56.jpeg" aria-label="project-img">Erzincan Öztürk Hafriyat</a>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          </div><!-- shuffle item 1 end -->
+
+      <div class="col-lg-4 col-md-6 shuffle-item" data-groups="[&quot;government&quot;,&quot;healthcare&quot;]">
+            <div class="project-img-container">
+              <a class="gallery-popup" href="images/14a41c38-c92a-4a73-8942-9bf8f2041289.jpg" aria-label="project-img">
+                <img class="img-fluid" src="images/14a41c38-c92a-4a73-8942-9bf8f2041289.jpg" alt="project-img">
+                <span class="gallery-icon"><i class="fa fa-plus"></i></span>
+              </a>
+              <div class="project-item-info">
+                <div class="project-item-info-content">
+                  <h3 class="project-item-title">
+                   <a class="gallery-popup" href="images/14a41c38-c92a-4a73-8942-9bf8f2041289.jpg" aria-label="project-img">Erzincan Öztürk Hafriyat</a>
                   </h3>
                 </div>
               </div>
@@ -419,7 +556,7 @@ $(document).ready(function() {
               <div class="project-item-info">
                 <div class="project-item-info-content">
                   <h3 class="project-item-title">
-                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 21.07.58.jpeg" aria-label="project-img">Öztürk Hafriyat</a>
+                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 21.07.58.jpeg" aria-label="project-img">Erzincan Öztürk Hafriyat</a>
                   </h3>
                 </div>
               </div>
@@ -435,7 +572,7 @@ $(document).ready(function() {
               <div class="project-item-info">
                 <div class="project-item-info-content">
                   <h3 class="project-item-title">
-                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 20.45.48.jpeg" aria-label="project-img">Öztürk Hafriyat</a>
+                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 20.45.48.jpeg" aria-label="project-img">Erzincan Öztürk Hafriyat</a>
                   </h3>
                 </div>
               </div>
@@ -451,7 +588,7 @@ $(document).ready(function() {
               <div class="project-item-info">
                 <div class="project-item-info-content">
                   <h3 class="project-item-title">
-                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 20.41.37.jpeg" aria-label="project-img">Öztürk Hafriyat</a>
+                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 20.41.37.jpeg" aria-label="project-img">Erzincan Öztürk Hafriyat</a>
                   </h3>
                 </div>
               </div>
@@ -467,7 +604,7 @@ $(document).ready(function() {
               <div class="project-item-info">
                 <div class="project-item-info-content">
                   <h3 class="project-item-title">
-                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 20.50.28.jpeg" aria-label="project-img">Öztürk Hafriyat</a>
+                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 20.50.28.jpeg" aria-label="project-img">Erzincan Öztürk Hafriyat</a>
                   </h3>
                 </div>
               </div>
@@ -483,7 +620,7 @@ $(document).ready(function() {
               <div class="project-item-info">
                 <div class="project-item-info-content">
                   <h3 class="project-item-title">
-                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 21.07.59.jpeg" aria-label="project-img">Öztürk Hafriyat</a>
+                   <a class="gallery-popup" href="images/WhatsApp Image 2025-02-08 at 21.07.59.jpeg" aria-label="project-img">Erzincan Öztürk Hafriyat</a>
                   </h3>
                 </div>
               </div>
@@ -501,7 +638,7 @@ $(document).ready(function() {
                 <div class="project-item-info">
                     <div class="project-item-info-content">
                         <h3 class="project-item-title">
-                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.01.mp4" aria-label="project-video">Öztürk Hafriyat</a>
+                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.01.mp4" aria-label="project-video">Erzincan Öztürk Hafriyat</a>
                         </h3>
                     </div>
                 </div>
@@ -519,7 +656,7 @@ $(document).ready(function() {
                 <div class="project-item-info">
                     <div class="project-item-info-content">
                         <h3 class="project-item-title">
-                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.02.mp4" aria-label="project-video">Öztürk Hafriyat</a>
+                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.02.mp4" aria-label="project-video">Erzincan Öztürk Hafriyat</a>
                         </h3>
                     </div>
                 </div>
@@ -537,7 +674,7 @@ $(document).ready(function() {
                 <div class="project-item-info">
                     <div class="project-item-info-content">
                         <h3 class="project-item-title">
-                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.00.mp4" aria-label="project-video">Öztürk Hafriyat</a>
+                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.00.mp4" aria-label="project-video">Erzincan Öztürk Hafriyat</a>
                         </h3>
                     </div>
                 </div>
@@ -555,7 +692,7 @@ $(document).ready(function() {
                 <div class="project-item-info">
                     <div class="project-item-info-content">
                         <h3 class="project-item-title">
-                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.00 (2).mp4" aria-label="project-video">Öztürk Hafriyat</a>
+                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.00 (2).mp4" aria-label="project-video">Erzincan Öztürk Hafriyat</a>
                         </h3>
                     </div>
                 </div>
@@ -573,7 +710,7 @@ $(document).ready(function() {
                 <div class="project-item-info">
                     <div class="project-item-info-content">
                         <h3 class="project-item-title">
-                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.00 (1).mp4" aria-label="project-video">Öztürk Hafriyat</a>
+                            <a class="gallery-popup" href="images/WhatsApp Video 2025-02-08 at 21.08.00 (1).mp4" aria-label="project-video">Erzincan Öztürk Hafriyat</a>
                         </h3>
                     </div>
                 </div>
@@ -619,13 +756,14 @@ $(document).ready(function() {
       <div class="container">
         <div class="row justify-content-between">
           <div class="col-lg-4 col-md-6 footer-widget footer-about">
-            <h3 class="widget-title">Hakkımızda</h3>
-            <p>
-              Öztürk Hafriyat olarak, 40 yılı aşkın tecrübemizle Erzincan’da hafriyat ve inşaat sektöründe güvenilir hizmet sunuyoruz. Müşteri memnuniyetini her zaman ön planda tutarak, projelerinizi hızlı, güvenli ve eksiksiz bir şekilde tamamlıyoruz.
+            <div id="hakkimizda">
+              <h3 class="widget-title">Hakkımızda</h3>
+              <p>
+                Erzincan Öztürk Hafriyat olarak, 40 yılı aşkın tecrübemizle Erzincan’da hafriyat ve inşaat sektöründe güvenilir hizmet sunuyoruz. Müşteri memnuniyetini her zaman ön planda tutarak, projelerinizi hızlı, güvenli ve eksiksiz bir şekilde tamamlıyoruz.
 
-              Şehir içi temel hafriyat, inşaat kazıları, zemin hazırlıkları, yol açma ve altyapı çalışmalarında ekibimiz ve ekipmanlarımızla yanınızdayız. Kaliteli hizmet anlayışımızla tüm hafriyat işleriniz için doğru adrestesiniz!            </p>
-          </div><!-- Col end -->
-
+                Şehir içi temel hafriyat, inşaat kazıları, zemin hazırlıkları, yol açma ve altyapı çalışmalarında ekibimiz ve ekipmanlarımızla yanınızdayız. Kaliteli hizmet anlayışımızla tüm hafriyat işleriniz için doğru adrestesiniz!            </p>
+              </div><!-- Col end -->
+            </div>
           <div class="col-lg-4 col-md-6 footer-widget mt-5 mt-md-0">
             <h3 class="widget-title">Şehir içi temel hafriyatları</h3>
             <div class="working-hours">
@@ -640,8 +778,8 @@ $(document).ready(function() {
           <div class="col-lg-3 col-md-6 mt-5 mt-lg-0 footer-widget">
             <h3 class="widget-title">Services</h3>
             <ul class="list-arrow">
-				<li><a href="/">ŞEHİR İÇİ TEMEL HAFRİYATLARI</a></li>
-				<li><a href="/">TÜM HAFRİYAT İŞLERİ</a></li>
+				<li><a href="/">ERZİNCAN ŞEHİR İÇİ TEMEL HAFRİYATLARI</a></li>
+				<li><a href="/">ERZİNCAN TÜM HAFRİYAT İŞLERİ</a></li>
             </ul>
           </div><!-- Col end -->
         </div><!-- Row end -->
@@ -687,6 +825,30 @@ $(document).ready(function() {
   <script src="plugins/shuffle/shuffle.min.js" defer></script>
 
 
+  <script>
+    document.querySelectorAll('.phone-btn').forEach(btn => {
+        btn.addEventListener('click', function (e) {
+            e.stopPropagation();
+
+            const box = this.closest('.phone-box');
+
+            // Diğer açık menüleri kapat
+            document.querySelectorAll('.phone-box').forEach(b => {
+                if (b !== box) b.classList.remove('active');
+            });
+
+            // Bu menüyü aç / kapat
+            box.classList.toggle('active');
+        });
+    });
+
+    // Sayfanın boş yerine tıklanınca kapat
+    document.addEventListener('click', function () {
+        document.querySelectorAll('.phone-box').forEach(b => {
+            b.classList.remove('active');
+        });
+    });
+  </script>
 
 
   <!-- Template custom -->
