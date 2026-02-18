@@ -180,18 +180,43 @@
 
 
 
-@media (max-width: 576px) {
-    .phone-menu {
-        width: 170px;
-        right: 65px;
-    }
-    .header-right {
-        padding-left: 0;
-        margin-top: 10px;
-    }
+/* MOBİLDE HEADER TELEFON / WHATSAPP ALT ALTA */
+@media (max-width: 991px) {
+
+  .top-info-box.contact-list {
+    display: block !important;
+  }
+
+  .top-info-box.contact-list > li.contact-item {
+    display: block !important;
+    width: 100% !important;
+    margin-bottom: 18px;
+  }
+
+  .contact-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .contact-numbers {
+    margin: 0;
+    padding-left: 32px;
+  }
+
+  .contact-numbers li {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .contact-numbers li a {
+    display: block;
+    font-size: 15px;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
 }
-
-
 
 </style>
 
